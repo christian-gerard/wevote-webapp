@@ -11,6 +11,13 @@ import ChallengeParticipantActions from '../../actions/ChallengeParticipantActio
 import ReadyStore from '../../../stores/ReadyStore';
 import VoterStore from '../../../stores/VoterStore';
 import { getChallengeValuesFromIdentifiers } from '../../utils/challengeUtils';
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+    gtmId: 'GTM-000000'
+}
+
+TagManager.initialize(tagManagerArgs)
 
 class JoinChallengeButton extends React.Component {
   constructor (props) {
@@ -33,7 +40,7 @@ class JoinChallengeButton extends React.Component {
     this.voterStoreListener = VoterStore.addListener(this.onVoterStoreChange.bind(this));
     this.onChallengeStoreChange();
     this.challengeStoreListener = ChallengeStore.addListener(this.onChallengeStoreChange.bind(this));
-  }
+ }
 
   componentWillUnmount () {
     this.challengeStoreListener.remove();
@@ -161,6 +168,7 @@ class JoinChallengeButton extends React.Component {
       });
       AppObservableStore.setShowSignInModal(true);
     }
+
   }
 
   render () {
